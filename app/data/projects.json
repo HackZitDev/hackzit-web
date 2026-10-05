@@ -7,7 +7,21 @@
     "githubUrl": "https://github.com/sebaxe07/CrediYork-Portfolio",
     "liveUrl": "",
     "category": "desktop",
-    "featured": true
+    "featured": true,
+    "repoName": "CrediYork-Portfolio",
+    "language": "TypeScript",
+    "status": "completed",
+    "highlights": [
+      "Comprehensive Electron-based desktop application for employee credit management",
+      "Built with React and TypeScript for type-safe development",
+      "Complete financial management solution for Panadería Nueva York employees",
+      "Cross-platform compatibility with modern UI/UX design",
+      "PDF generation and Excel export capabilities for reports",
+      "PostgreSQL database integration for robust data management"
+    ],
+    "overview": "CrediYork is a comprehensive **Electron-based desktop application** for managing employee credit operations and fund management at **Panadería Nueva York**. Built with modern web technologies and integrated with PostgreSQL for robust financial data management.",
+    "behanceUrl": "https://www.behance.net/gallery/213059393/CrediYork",
+    "figmaUrl": "https://embed.figma.com/proto/UyQpptQHfII4a5RgDYa6R5/Crediyork?node-id=177-26&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=177%3A26&embed-host=share"
   },
   {
     "id": 2,
@@ -17,7 +31,17 @@
     "githubUrl": "https://github.com/sebaxe07/hackzit-web",
     "liveUrl": "https://www.hackzit.dev/",
     "category": "web",
-    "featured": true
+    "featured": true,
+    "repoName": "hackzit-web",
+    "language": "TypeScript",
+    "status": "completed",
+    "highlights": [
+      "Modern web application with responsive design",
+      "Built with TypeScript and React for type safety",
+      "Optimized for performance and user experience",
+      "Clean and intuitive user interface"
+    ],
+    "overview": "A comprehensive web application showcasing modern development practices and user-centered design principles."
   },
   {
     "id": 3,
@@ -27,7 +51,17 @@
     "githubUrl": "https://github.com/sebaxe07/Tino-Robot",
     "liveUrl": "",
     "category": "robotics",
-    "featured": true
+    "featured": true,
+    "repoName": "Tino-Robot",
+    "language": "Python",
+    "status": "completed",
+    "highlights": [
+      "Multi-component robot with mobile base, articulated head, and leg mechanism",
+      "Real-time control system with sensor integration",
+      "Advanced navigation and obstacle avoidance",
+      "Custom hardware-software integration"
+    ],
+    "overview": "Tino Robot represents a comprehensive approach to multi-component robotics, featuring seamless integration between hardware and software systems. The project demonstrates advanced concepts in robotics control, real-time processing, and autonomous navigation."
   },
   {
     "id": 4,
@@ -37,7 +71,20 @@
     "githubUrl": "https://github.com/sebaxe07/BovisaBabyLMmodule",
     "liveUrl": "",
     "category": "robotics",
-    "featured": true
+    "featured": true,
+    "repoName": "BovisaBabyLMmodule",
+    "language": "Python",
+    "status": "completed",
+    "highlights": [
+      "Advanced AI-powered robotics module for livestock monitoring",
+      "Machine learning algorithms for behavioral analysis and health detection",
+      "Real-time sensor integration for comprehensive data collection",
+      "Python-based implementation with robust AI frameworks",
+      "Automated decision-making system for farm management optimization",
+      "Scalable architecture for integration with existing farm systems"
+    ],
+    "overview": "The **Bovisa Baby Controller System** is a sophisticated modular robot control system designed for autonomous navigation and human interaction. Features advanced LIDAR-based obstacle detection, computer vision for human tracking, and distributed processing across multiple Raspberry Pi devices.",
+    "vimeoVideoId": "1105574616"
   },
   {
     "id": 5,
@@ -47,7 +94,22 @@
     "githubUrl": "https://github.com/sebaxe07/Mapuka",
     "liveUrl": "",
     "category": "mobile",
-    "featured": true
+    "featured": true,
+    "repoName": "Mapuka",
+    "language": "TypeScript",
+    "status": "completed",
+    "highlights": [
+      "Innovative mobile mapping application with advanced location services",
+      "Built with TypeScript for robust and type-safe mobile development",
+      "Real-time location tracking and interactive map visualization",
+      "Comprehensive UI/UX design with user-centered approach",
+      "Cross-platform mobile solution with optimized performance",
+      "Advanced geolocation features and mapping integration"
+    ],
+    "overview": "Mapuka is an innovative **mobile mapping application** that revolutionizes location-based services and geographical data interaction. Built with **TypeScript** and modern mobile frameworks, providing comprehensive mapping, navigation, and real-time location tracking capabilities.",
+    "behanceUrl": "https://www.behance.net/gallery/231368723/Mapuka",
+    "figmaUrl": "https://embed.figma.com/proto/1rrUsGdVqTZefkp1cFJnrK/Mapuka-Design?node-id=230-592&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=230%3A592&embed-host=share",
+    "figmaDeckUrl": "https://embed.figma.com/deck/vRWEl9pyWIcXVo9rE4b48G/Mapuka-Slides?node-id=14-43&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&embed-host=share"
   },
   {
     "id": 6,
@@ -57,6 +119,21 @@
     "githubUrl": "https://github.com/sebaxe07/DemHouse-Portfolio",
     "liveUrl": "",
     "category": "mobile",
-    "featured": true
+    "featured": true,
+    "repoName": "DemHouse-Portfolio",
+    "language": "TypeScript",
+    "status": "completed",
+    "highlights": [
+      "Comprehensive mobile application for house/room sharing and co-living",
+      "Built with React Native, Expo, and TypeScript for cross-platform development",
+      "Complete user authentication, property listings, and matching system",
+      "Real-time chat functionality with modern UI/UX design",
+      "Multi-language support with internationalization (English/Italian)",
+      "Clean architecture with Redux Toolkit state management and Supabase backend"
+    ],
+    "overview": "DemHouse is a comprehensive **mobile application** built with **React Native** and **Expo** for house/room sharing and co-living connections. Features complete user management, property listings, smart matching systems, and real-time chat functionality with modern UI/UX design.",
+    "behanceUrl": "https://www.behance.net/gallery/205260507/DemHouse",
+    "figmaUrl": "https://embed.figma.com/proto/GuJpZIoYMM2d8l4iho5l11/DEMHOUSE?scaling=scale-down&content-scaling=fixed&page-id=0%3A1&node-id=2131-817&starting-point-node-id=2131-817&show-proto-sidebar=1&embed-host=share",
+    "vimeoVideoId": "997160968"
   }
 ]

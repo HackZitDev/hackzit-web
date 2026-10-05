@@ -1,23 +1,13 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaClock } from "react-icons/fa";
 import Image from "next/image";
 import projectsData from "../data/projects.json";
 import { useLanguage } from "../contexts/LanguageContext";
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image?: string;
-  technologies: string[];
-  githubUrl?: string;
-  liveUrl?: string;
-  category?: string;
-  featured: boolean;
-}
+import ProjectDetailModal from "./ProjectDetailModal";
+import type { Project } from "../types/project";
 
 // Translations for projects section
 const translations = {
@@ -27,6 +17,7 @@ const translations = {
       "Explore our diverse portfolio of custom software solutions deployed across multiple platforms and industries.",
     github: "GitHub",
     liveDemo: "Live Demo",
+    viewDetails: "View details",
     comingSoonTitle: "Coming Soon",
     comingSoonDesc:
       "Our featured projects are currently under development. Check back soon to see our latest work!",
@@ -37,6 +28,7 @@ const translations = {
       "Explora nuestro diverso portafolio de soluciones de software personalizadas implementadas en múltiples plataformas e industrias.",
     github: "GitHub",
     liveDemo: "Demo en Vivo",
+    viewDetails: "Ver detalles",
     comingSoonTitle: "Próximamente",
     comingSoonDesc:
       "Nuestros proyectos destacados están actualmente en desarrollo. ¡Vuelve pronto para ver nuestro trabajo más reciente!",
@@ -54,6 +46,19 @@ const ProjectsSection = () => {
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
   const { language } = useLanguage();
   const t = translations[language];
+
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -106,7 +111,16 @@ const ProjectsSection = () => {
                 variants={itemVariants}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.02 }}
-                className="bg-background/30 backdrop-blur-lg rounded-xl overflow-hidden border border-primary/20 shadow-lg hover:shadow-primary/20"
+                onClick={() => handleProjectClick(project)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleProjectClick(project);
+                  }
+                }}
+                className="group cursor-pointer bg-background/30 backdrop-blur-lg rounded-xl overflow-hidden border border-primary/20 shadow-lg hover:shadow-primary/20 focus:outline-none focus:ring-2 focus:ring-accent/50"
               >
                 <div className="relative h-48 bg-gradient-to-br from-primary/40 via-secondary/30 to-accent/30">
                   {project.image ? (
@@ -148,27 +162,34 @@ const ProjectsSection = () => {
                     ))}
                   </div>
 
-                  <div className="flex gap-4">
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-text hover:text-accent transition-colors"
-                      >
-                        <FaGithub /> {t.github}
-                      </a>
-                    )}
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-text hover:text-accent transition-colors"
-                      >
-                        <FaExternalLinkAlt /> {t.liveDemo}
-                      </a>
-                    )}
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex gap-4">
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="flex items-center gap-2 text-text hover:text-accent transition-colors"
+                        >
+                          <FaGithub /> {t.github}
+                        </a>
+                      )}
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="flex items-center gap-2 text-text hover:text-accent transition-colors"
+                        >
+                          <FaExternalLinkAlt /> {t.liveDemo}
+                        </a>
+                      )}
+                    </div>
+                    <span className="text-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                      {t.viewDetails} →
+                    </span>
                   </div>
                 </div>
               </motion.div>
@@ -192,6 +213,12 @@ const ProjectsSection = () => {
           )}
         </motion.div>
       </div>
+
+      <ProjectDetailModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </section>
   );
 };
