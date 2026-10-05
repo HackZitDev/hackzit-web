@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "es_ES",
     url: "https://hackzit.dev/",
     siteName: "HackZit",
     title: "HackZit - Custom Software Development Solutions",

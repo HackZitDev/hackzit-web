@@ -11,10 +11,11 @@ interface Project {
   id: number;
   title: string;
   description: string;
-  image: string;
+  image?: string;
   technologies: string[];
-  githubUrl: string;
-  liveUrl: string;
+  githubUrl?: string;
+  liveUrl?: string;
+  category?: string;
   featured: boolean;
 }
 
@@ -45,7 +46,7 @@ const translations = {
 const projectsDataTyped: Project[] = projectsData as Project[];
 const projects = projectsDataTyped
   .filter((project) => project.featured)
-  .slice(0, 4);
+  .slice(0, 6);
 // Filter only featured projects or adjust count as needed
 
 const ProjectsSection = () => {
@@ -107,14 +108,27 @@ const ProjectsSection = () => {
                 whileHover={{ scale: 1.02 }}
                 className="bg-background/30 backdrop-blur-lg rounded-xl overflow-hidden border border-primary/20 shadow-lg hover:shadow-primary/20"
               >
-                <div className="relative h-48">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                  />
+                <div className="relative h-48 bg-gradient-to-br from-primary/40 via-secondary/30 to-accent/30">
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-6xl font-bold text-white/70">
+                        {project.title.charAt(0)}
+                      </span>
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+                  {project.category && (
+                    <span className="absolute top-4 left-4 px-3 py-1 text-xs bg-background/60 backdrop-blur text-text rounded-full capitalize">
+                      {project.category}
+                    </span>
+                  )}
                 </div>
 
                 <div className="p-6">
@@ -135,22 +149,26 @@ const ProjectsSection = () => {
                   </div>
 
                   <div className="flex gap-4">
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-text hover:text-accent transition-colors"
-                    >
-                      <FaGithub /> {t.github}
-                    </a>
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-text hover:text-accent transition-colors"
-                    >
-                      <FaExternalLinkAlt /> {t.liveDemo}
-                    </a>
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-text hover:text-accent transition-colors"
+                      >
+                        <FaGithub /> {t.github}
+                      </a>
+                    )}
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-text hover:text-accent transition-colors"
+                      >
+                        <FaExternalLinkAlt /> {t.liveDemo}
+                      </a>
+                    )}
                   </div>
                 </div>
               </motion.div>

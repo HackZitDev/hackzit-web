@@ -23,6 +23,9 @@ const translations = {
     yourMessage: "Your Message",
     messagePlaceholder: "Tell us about your project...",
     send: "Send Message",
+    sending: "Sending...",
+    errorMessage:
+      "Something went wrong sending your message. Please email us at hackzit.dev@gmail.com.",
     namePlaceholder: "John Smith",
     emailPlaceholder: "john@example.com",
     subjectPlaceholder: "Project Inquiry",
@@ -44,6 +47,9 @@ const translations = {
     yourMessage: "Tu Mensaje",
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     send: "Enviar Mensaje",
+    sending: "Enviando...",
+    errorMessage:
+      "Hubo un problema al enviar tu mensaje. Escríbenos a hackzit.dev@gmail.com.",
     namePlaceholder: "Juan Pérez",
     emailPlaceholder: "juan@ejemplo.com",
     subjectPlaceholder: "Consulta de Proyecto",
@@ -64,6 +70,8 @@ const ContactSection = () => {
     message: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   // Use the global language context instead of local state
   const { language, toggleLanguage } = useLanguage();
 
@@ -83,24 +91,76 @@ const ContactSection = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isSubmitting) return;
 
-    // Here you would typically send the form data to your backend or a service
-    // For now, we'll just simulate a successful submission
-    setFormStatus({
-      submitted: true,
-      success: true,
-      message: t.successMessage,
-    });
+    setIsSubmitting(true);
+    setFormStatus({ submitted: false, success: false, message: "" });
 
-    // Reset form after submission
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+    const accessKey =
+      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
+      "5c7f8440-f299-4bcf-a2e0-aa41cebbe37b";
+
+    try {
+      if (accessKey) {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: accessKey,
+            subject: `[HackZit] ${formData.subject}`,
+            from_name: "HackZit Website",
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+          }),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || "Submission failed");
+        }
+      } else {
+        // Fallback when no form service key is configured: open the user's
+        // email client with the message pre-filled.
+        const body = [
+          `${t.yourName}: ${formData.name}`,
+          `${t.yourEmail}: ${formData.email}`,
+          "",
+          formData.message,
+        ].join("\n");
+
+        window.location.href = `mailto:hackzit.dev@gmail.com?subject=${encodeURIComponent(
+          `[HackZit] ${formData.subject}`
+        )}&body=${encodeURIComponent(body)}`;
+      }
+
+      setFormStatus({
+        submitted: true,
+        success: true,
+        message: t.successMessage,
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch {
+      setFormStatus({
+        submitted: true,
+        success: false,
+        message: t.errorMessage,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const formVariants = {
@@ -199,14 +259,7 @@ const ContactSection = () => {
                   <div>
                     <p className="font-medium text-text">{t.phone}</p>
                     <a
-                      href="tel:+1234567890"
-                      className="text-text/70 hover:text-accent transition-colors"
-                    >
-                      +39 (344) 342 2393
-                    </a>
-                    <br />
-                    <a
-                      href="tel:+1234567890"
+                      href="tel:+573217551344"
                       className="text-text/70 hover:text-accent transition-colors"
                     >
                       +57 (321) 755 1344
@@ -403,9 +456,10 @@ const ContactSection = () => {
                 <motion.div variants={inputVariants}>
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg hover:opacity-90 transition-opacity"
+                    disabled={isSubmitting}
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    {t.send} <FaPaperPlane />
+                    {isSubmitting ? t.sending : t.send} <FaPaperPlane />
                   </button>
                 </motion.div>
               </form>

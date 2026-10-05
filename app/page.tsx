@@ -34,7 +34,7 @@ export default function Home() {
             },
             contactPoint: {
               "@type": "ContactPoint",
-              telephone: "+1-234-567-8901",
+              telephone: "+57-321-755-1344",
               contactType: "customer service",
               email: "contact@hackzit.com",
             },

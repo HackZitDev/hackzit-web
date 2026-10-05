@@ -1,6 +1,12 @@
 "use client";
 
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  ReactNode,
+} from "react";
 
 type Language = "en" | "es";
 
@@ -14,8 +20,23 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined
 );
 
+const STORAGE_KEY = "hackzit-language";
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguage] = useState<Language>("es");
+
+  // Restore the visitor's saved preference (defaults to Spanish).
+  useEffect(() => {
+    const saved = window.localStorage.getItem(STORAGE_KEY);
+    if (saved === "en" || saved === "es") {
+      setLanguage(saved);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(STORAGE_KEY, language);
+    document.documentElement.lang = language;
+  }, [language]);
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "en" ? "es" : "en"));

@@ -1,1 +1,62 @@
-[{}]
+[
+  {
+    "id": 1,
+    "title": "CrediYork",
+    "description": "Electron-based desktop application for managing employee credit operations and funds at Panadería Nueva York, with PostgreSQL integration and PDF/Excel reporting.",
+    "technologies": ["TypeScript", "Electron", "React", "PostgreSQL"],
+    "githubUrl": "https://github.com/sebaxe07/CrediYork-Portfolio",
+    "liveUrl": "",
+    "category": "desktop",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "title": "HackZit Website",
+    "description": "Bilingual (English/Spanish) company website built with Next.js, React and Tailwind CSS, featuring a fully custom interactive UI.",
+    "technologies": ["TypeScript", "Next.js", "React", "Tailwind CSS"],
+    "githubUrl": "https://github.com/sebaxe07/hackzit-web",
+    "liveUrl": "https://www.hackzit.dev/",
+    "category": "web",
+    "featured": true
+  },
+  {
+    "id": 3,
+    "title": "Tino Robot",
+    "description": "Multi-component robot with a mobile base, articulated head and leg mechanism, featuring real-time control, sensor integration and autonomous navigation.",
+    "technologies": ["Python", "ROS2", "Robotics", "Control Systems"],
+    "githubUrl": "https://github.com/sebaxe07/Tino-Robot",
+    "liveUrl": "",
+    "category": "robotics",
+    "featured": true
+  },
+  {
+    "id": 4,
+    "title": "Bovisa Baby Controller",
+    "description": "AI-powered modular robotics system for autonomous navigation and livestock monitoring, with LIDAR obstacle detection and computer vision.",
+    "technologies": ["Python", "Machine Learning", "Robotics", "AI"],
+    "githubUrl": "https://github.com/sebaxe07/BovisaBabyLMmodule",
+    "liveUrl": "",
+    "category": "robotics",
+    "featured": true
+  },
+  {
+    "id": 5,
+    "title": "Mapuka",
+    "description": "Innovative mobile mapping application with real-time location tracking and interactive map visualization, built with TypeScript.",
+    "technologies": ["TypeScript", "Mobile Development", "Maps", "Location Services"],
+    "githubUrl": "https://github.com/sebaxe07/Mapuka",
+    "liveUrl": "",
+    "category": "mobile",
+    "featured": true
+  },
+  {
+    "id": 6,
+    "title": "DemHouse",
+    "description": "Cross-platform mobile app for house/room sharing and co-living, with authentication, property listings, smart matching and real-time chat.",
+    "technologies": ["React Native", "Expo", "TypeScript", "Redux Toolkit"],
+    "githubUrl": "https://github.com/sebaxe07/DemHouse-Portfolio",
+    "liveUrl": "",
+    "category": "mobile",
+    "featured": true
+  }
+]
