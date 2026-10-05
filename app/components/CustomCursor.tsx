@@ -42,7 +42,7 @@ const TrailDot = ({
 
   return (
     <motion.div
-      className={`fixed top-0 left-0 rounded-full pointer-events-none z-[9998] bg-gradient-to-r from-primary/40 to-secondary/30 ${
+      className={`fixed top-0 left-0 rounded-full pointer-events-none z-[10000] bg-gradient-to-r from-primary/40 to-secondary/30 ${
         !isVisible ? "opacity-0" : ""
       }`}
       style={{
@@ -141,7 +141,7 @@ const Cursor = () => {
     <>
       {/* Main cursor */}
       <motion.div
-        className={`fixed top-0 left-0 rounded-full pointer-events-none z-[9999] border-2 border-primary flex items-center justify-center ${
+        className={`fixed top-0 left-0 rounded-full pointer-events-none z-[10001] border-2 border-primary flex items-center justify-center ${
           isActive
             ? "bg-accent/30"
             : isPointer
